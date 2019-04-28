@@ -9,8 +9,7 @@ server.listen(port);
 
 server.use(express.static('public'));
 
-server.use(bodyParser.urlencoded({
-    extended: false
-}));
+server.use(bodyParser.urlencoded({extended:true}));
+server.use(bodyParser.json())
 
 server.use('/code', codeRouter);
