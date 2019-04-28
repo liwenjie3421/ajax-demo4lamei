@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <table border="1" style="border-collapse:collapse;">
+    <thead>
+        <tr>
+            <td>id</td>
+            <td>code</td>
+            <td>name</td>
+            <td>操作</td>
+          </tr>
+    </thead>
+    <tbody id="tbody">
+
+    </tbody>
+
+  </table>
+  <script src="./lib/jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    $.ajax({
+      url:'/code/list',
+      type:'get',
+      success:function(result){
+        console.log(result);
+        var _html='';
+        for (let i = 0; i < result.length; i++) {
+          const element = result[i];
+          _html+=`<tr>
+          <td>${element.id}</td>
+          <td>${element.code}</td>
+          <td>${element.name}</td>
+          <td><a href="">删除</a>&nbsp;&nbsp;<a href="">修改</a></td>
+          </tr>`;
+          
+        }
+        $('#tbody').append(_html)
+      }
+    })
+  })
+  </script>
+</body>
+
+</html>
