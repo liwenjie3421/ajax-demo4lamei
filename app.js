@@ -2,10 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const codeRouter = require('./router/codeRouter');
 
-var server = express();
-
-console.log('server is running at http://127.0.0.1:8080')
-server.listen(8080);
+const server = express();
+const port = 8081;
+console.log(`server is running at http://127.0.0.1:${port}`);
+server.listen(port);
 
 server.use(express.static('public'));
 
