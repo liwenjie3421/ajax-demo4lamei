@@ -1,6 +1,9 @@
-const express = require('express');
-const lowdb = require('lowdb');
-const FileSync = require('lowdb/adapters/FileSync');
+import { Router, Request, Response } from 'express';
+import * as lowdb from 'lowdb';
+import * as FileSync from 'lowdb/adapters/FileSync';
+
+import { BadParamsErr } from '../utils/errTypes';
+import { sendError, sendSuccess } from '../utils/utils';
 
 const adapter = new FileSync('db.json'); // 申明一个适配器
 const db = lowdb(adapter);
@@ -15,17 +18,16 @@ db.defaults({
         { id: 7, name: '测试名称7', code: 'TEST_CODE_7' },
         { id: 8, name: '测试名称8', code: 'TEST_CODE_8' },
         { id: 9, name: '测试名称9', code: 'TEST_CODE_9' },
-        { id: 10, name: '测试名称10', code: 'TEST_CODE_10' },
+        { id: 10, name: '测试名称10', code: 'TEST_CODE_10' }
     ]
-}).write()
+}).write();
+const codeRouter = Router();
 
-const codeRouter = express.Router();
-
-codeRouter.get('/list', (req, res) => {
-    const list = db.get('code').sortBy('id').value()
-    res.send(list)
-})
-codeRouter.post('/', (req, res) => {
+codeRouter.get('/list', (req: Request, res: Response) => {
+    const list = db.get('code').sortBy('id').value();
+    res.send(list);
+});
+codeRouter.post('/', (req: Request, res: Response) => {
     const codeDB = db.get('code');
     const count = codeDB.size().value();
     const {name, code} = req.body;
@@ -35,15 +37,13 @@ codeRouter.post('/', (req, res) => {
         db.get('code').push({
             code, name, id: count + 1
         }).write();
-        res.send({
-            code: 0,
+        sendSuccess(res, {
             msg: '增加成功'
-        })
+        });
     } else {
-        res.status(400);
-        res.send('code重复')
+        sendError(res, new BadParamsErr('code重复'));
     }
 
-})
+});
 
-module.exports = codeRouter;
+export default codeRouter;
