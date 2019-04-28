@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const router = require('./routes');
+const codeRouter = require('./router/codeRouter');
 
 var server = express();
 
@@ -13,4 +13,4 @@ server.use(bodyParser.urlencoded({
     extended: false
 }));
 
-server.use('/api/', router);
+server.use('/code', codeRouter);
