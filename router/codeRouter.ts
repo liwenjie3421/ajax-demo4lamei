@@ -27,6 +27,7 @@ codeRouter.get('/list', (req: Request, res: Response) => {
     const list = db.get('code').sortBy('id').value();
     res.send(list);
 });
+// 新增
 codeRouter.post('/', (req: Request, res: Response) => {
     const codeDB = db.get('code');
     const count = codeDB.size().value();
@@ -45,5 +46,10 @@ codeRouter.post('/', (req: Request, res: Response) => {
     }
 
 });
+// 删除
+codeRouter.delete('/:id',  (req: Request, res: Response) => {
+    console.log(req.params.id);
+});
+
 
 export default codeRouter;
