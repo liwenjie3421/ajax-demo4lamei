@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch './**/*' -e ts,tsx --exec 'ts-node' ./app.ts",
+    "start": "nodemon --watch './**/*' -e ts,tsx --exec \"ts-node\" ./app.ts",
     "tslint": "tslint --project . ./src/**/*.ts --fix"
   },
   "repository": {

@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
 </head>
+
 <body>
-    <script src="./lib/jquery-3.4.0.min.js"></script>
+	<form>
+		<label>
+				code: <input type="text" id="codeid">
+		</label>
+		<br>
+		<label>
+				name: <input type="text" id="nameid">
+		</label>
+		<button type="button" id="submit">提交</button>
+	</form>
+
+
+	<script src="./lib/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			$('#submit').click(function(){
+				var code=$('#codeid').val();
+				var name=$('#nameid').val();
+				$.ajax({
+					url:'/code',
+					type:'post',
+					data:{
+						code:code,
+						name:name,
+					},
+					success:function(result){
+						alert('增加成功')
+					},
+					error:function(error){
+						alert(error.responseJSON.msg)
+					}
+				})
+
+
+			})
+		})
+	</script>
 </body>
+
 </html>
