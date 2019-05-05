@@ -48,7 +48,18 @@ codeRouter.post('/', (req: Request, res: Response) => {
 });
 // 删除
 codeRouter.delete('/:id',  (req: Request, res: Response) => {
-    console.log(req.params.id);
+    const codeDB = db.get('code');
+    const id = +req.params.id;
+    const result = codeDB.remove({
+        id
+    }).write();
+    if (result && result[0] && result[0].id === id) {
+        sendSuccess(res, {
+            msg: '删除成功'
+        });
+    } else {
+        sendError(res, new BadParamsErr('资源不存在'));
+    }
 });
 
 

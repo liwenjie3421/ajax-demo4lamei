@@ -13,5 +13,6 @@ interface SuccessResult {
     msg?: string;
 }
 export const sendSuccess = (res: Response, result: SuccessResult) => {
+    result.msg = result.msg || '成功';
     res.send(result);
 };

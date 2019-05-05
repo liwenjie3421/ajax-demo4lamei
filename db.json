@@ -41,21 +41,6 @@
       "code": "TEST_CODE_8"
     },
     {
-      "id": 9,
-      "name": "测试名称9",
-      "code": "TEST_CODE_9"
-    },
-    {
-      "id": 10,
-      "name": "测试名称10",
-      "code": "TEST_CODE_10"
-    },
-    {
-      "code": "我是14111",
-      "name": "基础配置",
-      "id": 11
-    },
-    {
       "code": "我是14112",
       "name": "基础配置",
       "id": 12
