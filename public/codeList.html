@@ -27,8 +27,8 @@
     $.ajax({
       url:'/code/list',
       type:'get',
-      success:function(result){
-        console.log(result);
+      success:function(_result){
+        const result=_result.data;
         var _html='';
         for (let i = 0; i < result.length; i++) {
           const element = result[i];
