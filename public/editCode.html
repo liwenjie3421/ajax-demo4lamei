@@ -11,37 +11,57 @@
 <body>
 	<form>
 		<label>
-				code: <input type="text" id="codeid">
+			code: <input type="text" id="codeid">
 		</label>
 		<br>
 		<label>
-				name: <input type="text" id="nameid">
+			name: <input type="text" id="nameid">
 		</label>
-		<button type="button" id="submit">提交</button>
+		<button type="button" id="submit">新增</button>
 	</form>
 
 
 	<script src="./lib/jquery.min.js"></script>
 	<script>
-		$(document).ready(function(){
-			$('#submit').click(function(){
-				var code=$('#codeid').val();
-				var name=$('#nameid').val();
-				$.ajax({
-					url:'/code',
-					type:'post',
-					data:{
-						code:code,
-						name:name,
-					},
-					success:function(result){
-						alert('增加成功')
-					},
-					error:function(error){
-						alert(error.responseJSON.msg)
-					}
-				})
+		$(document).ready(function () {
+			const id = (window.location.search.match(/^\?id=(\d+)$/i) || [])[1];
+			id && ($('#submit').text('修改'))
 
+
+			$('#submit').click(function () {
+				var code = $('#codeid').val();
+				var name = $('#nameid').val();
+				if (!id) {
+					$.ajax({
+						url: '/code',
+						type: 'post',
+						data: {
+							code: code,
+							name: name,
+						},
+						success: function (result) {
+							alert('增加成功')
+						},
+						error: function (error) {
+							alert(error.responseJSON.msg)
+						}
+					})
+				}else{
+					$.ajax({
+						url:'/code/'+id,
+						type:'put',
+						data:{
+							code,
+							name
+						},
+						success: function (result) {
+							alert('修改成功')
+						},
+						error: function (error) {
+							alert(error.responseJSON.msg)
+						}
+					})
+				}
 
 			})
 		})
