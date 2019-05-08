@@ -27,6 +27,12 @@ codeRouter.get('/list', (req: Request, res: Response) => {
     const list = db.get('code').sortBy('id').value();
     res.send(list);
 });
+
+codeRouter.get('/:id', (req: Request, res: Response) => {
+    const id = +req.params.id;
+    const info = db.get('code').find({id}).value();
+    res.send(info);
+});
 // 新增
 codeRouter.post('/', (req: Request, res: Response) => {
     const codeDB = db.get('code');
