@@ -24,8 +24,10 @@ db.defaults({
 const codeRouter = Router();
 
 codeRouter.get('/list', (req: Request, res: Response) => {
-    const list = db.get('code').sortBy('id').value();
-    res.send(list);
+    const data = db.get('code').sortBy('id').value();
+    sendSuccess(res,{
+        data
+    })
 });
 
 codeRouter.get('/:id', (req: Request, res: Response) => {
