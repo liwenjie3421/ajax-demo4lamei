@@ -25,15 +25,17 @@ const codeRouter = Router();
 
 codeRouter.get('/list', (req: Request, res: Response) => {
     const data = db.get('code').sortBy('id').value();
-    sendSuccess(res,{
+    sendSuccess(res, {
         data
-    })
+    });
 });
 
 codeRouter.get('/:id', (req: Request, res: Response) => {
     const id = +req.params.id;
-    const info = db.get('code').find({id}).value();
-    res.send(info);
+    const data = db.get('code').find({id}).value();
+    sendSuccess(res, {
+        data
+    });
 });
 // 新增
 codeRouter.post('/', (req: Request, res: Response) => {
