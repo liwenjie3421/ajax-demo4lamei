@@ -26,3 +26,12 @@ open http://127.0.0.1:8081
 3. 删除code: 在`codeList`页面table中新增一列`操作`，内容为`删除`。点击删除，发送请求删除该资源
 
     url为: `delete` `/code/:id`
+
+4. 修改code: 在`codeList`页面table中新增一列`操作`，内容为`修改`，点击修改跳转到`editCode`页面中，点击提交按钮修改资源
+
+    `put`方法提交数据:     
+    - id
+    - code 
+    - name
+
+    提交url为:  `/code/:id`

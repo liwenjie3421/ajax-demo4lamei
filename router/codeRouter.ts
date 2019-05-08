@@ -37,6 +37,7 @@ codeRouter.get('/:id', (req: Request, res: Response) => {
         data
     });
 });
+
 // 新增
 codeRouter.post('/', (req: Request, res: Response) => {
     const codeDB = db.get('code');
@@ -72,5 +73,25 @@ codeRouter.delete('/:id',  (req: Request, res: Response) => {
     }
 });
 
+// 修改
+codeRouter.put('/:id', (req: Request, res: Response) => {
+    const codeDB = db.get('code');
+    const id = +req.params.id;
+    const {name, code} = req.body;
+
+
+    const r = codeDB.find({id}).assign({
+        name,
+        code
+    }).write();
+    console.log();
+    if (r.id === id) {
+        sendSuccess(res, {
+                msg: '修改成功'
+            });
+    } else {
+        sendError(res, new BadParamsErr('资源不存在'));
+    }
+});
 
 export default codeRouter;
