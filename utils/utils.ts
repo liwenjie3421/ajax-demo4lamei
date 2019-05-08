@@ -1,18 +1,18 @@
-import { Router, Request, Response } from 'express';
-import { BaseError } from '../utils/errTypes';
+import { Router, Request, Response } from 'express'
+import { BaseError } from '../utils/errTypes'
 
 export const sendError = (res: Response, error: BaseError) => {
-    res.status(error.errCode);
+    res.status(error.errCode)
     res.send({
         msg: error.message
-    });
-};
+    })
+}
 
 interface SuccessResult {
-    data?: any;
-    msg?: string;
+    data?: any
+    msg?: string
 }
 export const sendSuccess = (res: Response, result: SuccessResult) => {
-    result.msg = result.msg || '成功';
-    res.send(result);
-};
+    result.msg = result.msg || '成功'
+    res.send(result)
+}

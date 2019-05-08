@@ -19,24 +19,24 @@ export class CommonErr extends BaseError {
 export class AuthErr extends BaseError {
     public errCode;
     public constructor(errMsg = '鉴权失败') {
-        super(errMsg);
-        this.message = errMsg;
-        this.errCode = authErrCode;
+        super(errMsg)
+        this.message = errMsg
+        this.errCode = authErrCode
     }
 }
 export class NotFoundErr extends BaseError {
-    public errCode;
+    public errCode
     public constructor(errMsg = '资源不存在') {
-        super(errMsg);
-        this.message = errMsg;
-        this.errCode = notFoundCode;
+        super(errMsg)
+        this.message = errMsg
+        this.errCode = notFoundCode
     }
 }
 export class BadParamsErr extends BaseError {
-    public errCode;
+    public errCode
     public constructor(errMsg = '参数错误') {
-        super(errMsg);
-        this.message = errMsg;
-        this.errCode = badParamsErrCode;
+        super(errMsg)
+        this.message = errMsg
+        this.errCode = badParamsErrCode
     }
 }

@@ -28,7 +28,7 @@ codeRouter.get('/list', (req: Request, res: Response) => {
     sendSuccess(res, {
         data
     });
-});
+})
 
 codeRouter.get('/:id', (req: Request, res: Response) => {
     const id = +req.params.id;
@@ -36,62 +36,59 @@ codeRouter.get('/:id', (req: Request, res: Response) => {
     sendSuccess(res, {
         data
     });
-});
+})
 
 // 新增
 codeRouter.post('/', (req: Request, res: Response) => {
-    const codeDB = db.get('code');
-    const count = codeDB.size().value();
-    const {name, code} = req.body;
-    const item = codeDB.find({code}).value();
+    const codeDB = db.get('code')
+    const count = codeDB.size().value()
+    const {name, code} = req.body
+    const item = codeDB.find({code}).value()
 
     if (!item) {
         db.get('code').push({
             code, name, id: count + 1
-        }).write();
+        }).write()
         sendSuccess(res, {
             msg: '增加成功'
-        });
+        })
     } else {
-        sendError(res, new BadParamsErr('code重复'));
+        sendError(res, new BadParamsErr('code重复'))
     }
 
-});
+})
 // 删除
 codeRouter.delete('/:id',  (req: Request, res: Response) => {
-    const codeDB = db.get('code');
-    const id = +req.params.id;
+    const codeDB = db.get('code')
+    const id = +req.params.id
     const result = codeDB.remove({
         id
-    }).write();
+    }).write()
     if (result && result[0] && result[0].id === id) {
         sendSuccess(res, {
             msg: '删除成功'
-        });
+        })
     } else {
-        sendError(res, new BadParamsErr('资源不存在'));
+        sendError(res, new BadParamsErr('资源不存在'))
     }
-});
+})
 
 // 修改
 codeRouter.put('/:id', (req: Request, res: Response) => {
-    const codeDB = db.get('code');
-    const id = +req.params.id;
-    const {name, code} = req.body;
-
-
+    const codeDB = db.get('code')
+    const id = +req.params.id
+    const {name, code} = req.body
     const r = codeDB.find({id}).assign({
         name,
         code
-    }).write();
-    console.log();
+    }).write()
     if (r.id === id) {
         sendSuccess(res, {
                 msg: '修改成功'
-            });
+            })
     } else {
-        sendError(res, new BadParamsErr('资源不存在'));
+        sendError(res, new BadParamsErr('资源不存在'))
     }
-});
+})
 
-export default codeRouter;
+export default codeRouter
