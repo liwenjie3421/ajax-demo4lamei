@@ -6,7 +6,7 @@ import { BadParamsErr } from '../utils/errTypes'
 import { sendError, sendSuccess } from '../utils/utils'
 
 const adapter = new FileSync('db.json') // 申明一个适配器
-const db = lowdb(adapter)
+const db: any = lowdb(adapter)
 db.defaults({
     code: [
         { id: 1, name: '测试名称1', code: 'TEST_CODE_1' },
