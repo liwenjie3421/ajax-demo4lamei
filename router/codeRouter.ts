@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express'
 import * as lowdb from 'lowdb'
 import * as FileSync from 'lowdb/adapters/FileSync'
-console.log('lowdb', lowdb)
+
 import { BadParamsErr } from '../utils/errTypes'
 import { sendError, sendSuccess } from '../utils/utils'
 

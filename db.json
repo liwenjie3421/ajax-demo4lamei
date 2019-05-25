@@ -60,5 +60,49 @@
       "name": "2222",
       "id": 12
     }
-  ]
+  ],
+  "task": {
+    "list": [
+      {
+        "taskid": 1,
+        "week": 1,
+        "type": 3,
+        "start_time": 1558767481873,
+        "end_time": 1559174400000,
+        "status": -1,
+        "modify_time": 0,
+        "title": "百白破疫苗"
+      },
+      {
+        "taskid": 2,
+        "week": 1,
+        "type": 1,
+        "start_time": 1558767481873,
+        "end_time": 1559174400000,
+        "status": -1,
+        "modify_time": 0,
+        "title": "体重"
+      },
+      {
+        "taskid": 3,
+        "week": 2,
+        "type": 1,
+        "start_time": 1558767481870,
+        "end_time": 1559174400000,
+        "status": -1,
+        "modify_time": 0,
+        "title": "体重2"
+      },
+      {
+        "taskid": 4,
+        "week": 1,
+        "type": 2,
+        "start_time": 1558767481873,
+        "end_time": 1559174400000,
+        "status": -1,
+        "modify_time": 0,
+        "title": "体温"
+      }
+    ]
+  }
 }

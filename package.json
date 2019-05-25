@@ -23,9 +23,9 @@
     "lowdb": "^1.0.0"
   },
   "devDependencies": {
-    "@types/lowdb": "^1.0.7",
     "@types/body-parser": "^1.17.0",
     "@types/express": "^4.16.1",
+    "@types/lowdb": "^1.0.7",
     "@types/node": "^11.13.8",
     "nodemon": "^1.18.11",
     "ts-node": "^8.1.0",
