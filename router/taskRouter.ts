@@ -106,6 +106,18 @@ taskRouter.post('/finish/:taskid', (req: Request, res: Response) => {
     })
 })
 
+taskRouter.post('/deploy/:taskid', (req: Request, res: Response) => {
+    const { taskid }: { taskid: string } = req.params
+    const taskItem: any = taskListDB.find({taskid: +taskid})
+    // tslint:disable-next-line:no-magic-numbers
+    const end_time = taskItem.value().end_time + 7 * 24 * 60 ** 2 * 1e3
+    const data = taskItem.assign({
+        end_time
+    }).write()
+    sendSuccess(res, {
+        data
+    })
+})
 function getListByType(type: number) {
     const data = {}
     const taskList: any[] = taskListDB.filter({ type: +type }).sortBy('start_time', (item) => -item).value()

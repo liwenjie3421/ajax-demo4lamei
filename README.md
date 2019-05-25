@@ -112,3 +112,13 @@ status: 200
         msg: '成功'
     }
 ```
+
+`post` `/task/deploy/:taskid` 延期任务一周
+
+返回值
+status: 200
+```
+    {
+        msg: '成功'
+    }
+```
