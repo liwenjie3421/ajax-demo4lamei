@@ -85,6 +85,10 @@ taskRouter.get('/:taskid', (req: Request, res: Response) => {
     })
 })
 
+taskRouter.post('/finish/:taskid', (req: Request, res: Response) => {
+    
+})
+
 function getListByType(type: number) {
     const data = {}
     const taskList: any[] = taskListDB.filter({ type: +type }).sortBy('start_time', (item) => -item).value()
