@@ -101,7 +101,7 @@ status: 200
 参数： 
 ```
     {
-        data: [{value:xxxx}, {value:xxxx}] //  具体时间/数值的集合
+        data: [{value:xxxx, time: xxx}, {value:xxxx, time: xxx}] //  具体时间/数值的集合
     }
 ```
 
