@@ -1,12 +1,12 @@
-import { Router, Request, Response } from 'express';
-import * as lowdb from 'lowdb';
-import * as FileSync from 'lowdb/adapters/FileSync';
+import { Router, Request, Response } from 'express'
+import * as lowdb from 'lowdb'
+import * as FileSync from 'lowdb/adapters/FileSync'
+console.log('lowdb', lowdb)
+import { BadParamsErr } from '../utils/errTypes'
+import { sendError, sendSuccess } from '../utils/utils'
 
-import { BadParamsErr } from '../utils/errTypes';
-import { sendError, sendSuccess } from '../utils/utils';
-
-const adapter = new FileSync('db.json'); // 申明一个适配器
-const db = lowdb(adapter);
+const adapter = new FileSync('db.json') // 申明一个适配器
+const db = lowdb(adapter)
 db.defaults({
     code: [
         { id: 1, name: '测试名称1', code: 'TEST_CODE_1' },
@@ -20,33 +20,33 @@ db.defaults({
         { id: 9, name: '测试名称9', code: 'TEST_CODE_9' },
         { id: 10, name: '测试名称10', code: 'TEST_CODE_10' }
     ]
-}).write();
-const codeRouter = Router();
+}).write()
+const codeRouter = Router()
 
 codeRouter.get('/list', (req: Request, res: Response) => {
-    const data = db.get('code').sortBy('id').value();
+    const data = (db.get('code') as any).sortBy('id').value()
     sendSuccess(res, {
         data
-    });
+    })
 })
 
 codeRouter.get('/:id', (req: Request, res: Response) => {
-    const id = +req.params.id;
-    const data = db.get('code').find({id}).value();
+    const id = +req.params.id
+    const data = (db.get('code') as any).find({id}).value()
     sendSuccess(res, {
         data
-    });
+    })
 })
 
 // 新增
 codeRouter.post('/', (req: Request, res: Response) => {
-    const codeDB = db.get('code')
+    const codeDB: any = db.get('code')
     const count = codeDB.size().value()
     const {name, code} = req.body
     const item = codeDB.find({code}).value()
 
     if (!item) {
-        db.get('code').push({
+        codeDB.push({
             code, name, id: count + 1
         }).write()
         sendSuccess(res, {
@@ -59,7 +59,7 @@ codeRouter.post('/', (req: Request, res: Response) => {
 })
 // 删除
 codeRouter.delete('/:id',  (req: Request, res: Response) => {
-    const codeDB = db.get('code')
+    const codeDB: any = db.get('code')
     const id = +req.params.id
     const result = codeDB.remove({
         id
@@ -75,7 +75,7 @@ codeRouter.delete('/:id',  (req: Request, res: Response) => {
 
 // 修改
 codeRouter.put('/:id', (req: Request, res: Response) => {
-    const codeDB = db.get('code')
+    const codeDB: any = db.get('code')
     const id = +req.params.id
     const {name, code} = req.body
     const r = codeDB.find({id}).assign({
